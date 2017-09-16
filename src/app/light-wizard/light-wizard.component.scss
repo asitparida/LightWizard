@@ -159,10 +159,10 @@
 			&:after {
 				content:'';
 				height: 1px;
-				width:calc(100% - 60px);;
-				background: #E0E0E0;
+				width:calc(100% - 90px);;
+				background: #E6E6E6;
 				position: absolute;
-				left:35px;
+				left:65px;
 				top:30px;
 				z-index: 1;
 			}
@@ -171,6 +171,7 @@
 				position: relative;
 				float: left;
 				width:60px;
+				text-align: center;
 				&:before {
 					content:attr(index);
 					line-height: 26px;
@@ -189,6 +190,7 @@
 					cursor: pointer;
 				}
 				&.active {
+					background: #fff;
 				  &:before {
 					  content:attr(index);
 					  line-height: 26px;
@@ -196,7 +198,7 @@
 					  width: 36px;
 					  height: 36px;
 					  border-radius: 50%;
-					  border: 5px solid #fafafa;
+					  border: 5px solid #fff;
 					  background: lighten(#2ecc71, 35);
 					  box-sizing: border-box;
 					  z-index: 2;
