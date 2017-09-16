@@ -1,5 +1,5 @@
 <div class="light-wizard-container" [hidden]="!showWizard">
-	<div class="light-wizard-nav-container">
+	<div class="light-wizard-nav-container" [hidden]="hideSideNav">
 		<div class="light-wizard-title">
 			<span><ng-content select="[light-wizard-title]"></ng-content></span>
 		</div>
@@ -11,10 +11,15 @@
 	</div>
 	<div class="light-wizard-page-container">
 		<ng-content></ng-content>
-	</div>
-	<div class="light-wizard-loader-container" [hidden]="!showLoader">
-		<div class="light-wizard-loader-overlay">
-			<ng-content select="[light-wizard-loader]"></ng-content>
+		<div class="light-wizard-loader-container" [hidden]="!showLoader">
+			<div class="light-wizard-loader-overlay">
+				<ng-content select="[light-wizard-loader]"></ng-content>
+			</div>
+		</div>
+		<div class="light-wizard-footer-steppers" [hidden]="!showStepperMarkersInFooter">
+			<ul>
+				<li [class.done]="i < activePageIndex" [attr.index]="i + 1" [class.active]="i === activePageIndex" *ngFor="let page of pages; let i = index" (click)="activatePage(i)"></li>
+			</ul>
 		</div>
 	</div>
 </div>

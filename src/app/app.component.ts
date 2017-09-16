@@ -8,7 +8,7 @@ import { LightWizardComponent } from './light-wizard/light-wizard.component';
 })
 export class AppComponent implements AfterViewInit {
 	isWizardShown: Boolean = false;
-	title = 'app works!';
+	sideNavEnabled: Boolean = true;
 	@ViewChild('wizard') wizard: LightWizardComponent;
 	openWizard() {
 		this.wizard.open();
@@ -30,9 +30,9 @@ export class AppComponent implements AfterViewInit {
 		});
 	}
 	ngAfterViewInit () {
-		// setTimeout(() => {
-		// 	this.isWizardShown = true;
-		// 	this.wizard.open();
-		// });
+		setTimeout(() => {
+			this.isWizardShown = true;
+			this.wizard.open();
+		});
 	}
 }

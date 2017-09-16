@@ -16,8 +16,8 @@
 		align-items: center;
 		justify-content: center;
 		float: right;
-		width: calc(100% - 280px);
-		height: 100%;
+		width: 100%;
+		height: calc(100% - 60px);
 		background-color: rgba(255,255,255,1);
 	}
   }
@@ -76,6 +76,7 @@
 				  top: 12px;
 				  left: 25px;
 				  z-index: 2;
+				  font-size: small;
 			  }
 			  &.active {
 				&:before {
@@ -92,6 +93,7 @@
 					top: 12px;
 					left: 25px;
 					z-index: 2;
+					font-size: small;
 				}
 			  }
 			  &.done {
@@ -110,6 +112,7 @@
 					top: 12px;
 					left: 25px;
 					z-index: 2;
+					font-size: small;
 				}
 			  }
 		  }
@@ -140,6 +143,92 @@
   .light-wizard-page-container {
     flex: 1;
 	order:2;
-    height: 100%;
+	height: 100%;
+	position: relative;
+	.light-wizard-footer-steppers {
+		position: absolute;
+		bottom: 0;
+		height: 60px;
+		left: 0;
+		ul {
+			list-style: none;
+			padding: 0 0 0 30px;
+			margin: 0;
+			position: relative;
+			white-space: nowrap;
+			&:after {
+				content:'';
+				height: 1px;
+				width:calc(100% - 60px);;
+				background: #E0E0E0;
+				position: absolute;
+				left:35px;
+				top:30px;
+				z-index: 1;
+			}
+			li {
+				line-height: 60px;
+				position: relative;
+				float: left;
+				width:60px;
+				&:before {
+					content:attr(index);
+					line-height: 26px;
+					text-align: center;
+					width: 36px;
+					height: 36px;
+					border-radius: 50%;
+					border: 5px solid #fafafa;
+					background: #E0E0E0;
+					box-sizing: border-box;
+					z-index: 2;
+					display: inline-block;
+					vertical-align: middle;
+					position: relative;
+					font-size: small;
+					cursor: pointer;
+				}
+				&.active {
+				  &:before {
+					  content:attr(index);
+					  line-height: 26px;
+					  text-align: center;
+					  width: 36px;
+					  height: 36px;
+					  border-radius: 50%;
+					  border: 5px solid #fafafa;
+					  background: lighten(#2ecc71, 35);
+					  box-sizing: border-box;
+					  z-index: 2;
+					  display: inline-block;
+					  vertical-align: middle;
+					  position: relative;
+					  font-size: small;
+					  cursor: pointer;
+				  }
+				}
+				&.done {
+				  &:before {
+					  content:attr(index);
+					  line-height: 26px;
+					  text-align: center;
+					  width: 36px;
+					  height: 36px;
+					  border-radius: 50%;
+					  border: 5px solid #fafafa;
+					  background: #27ae60;
+					  color: #fff;
+					  box-sizing: border-box;
+					  z-index: 2;
+					  display: inline-block;
+					  vertical-align: middle;
+					  position: relative;
+					  font-size: small;
+					  cursor: pointer;
+				  }
+				}
+			}
+		}
+	}
   }
 }

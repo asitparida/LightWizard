@@ -1,6 +1,13 @@
 <button class="btn btn-primary" [hidden]="isWizardShown" (click)="openWizard()">Open Inline Wizard</button>
+<button class="btn btn-primary marginFix" [hidden]="!isWizardShown" (click)="sideNavEnabled = !sideNavEnabled">Toggle Wizard Nav</button>
 <div class="light-wizard-holder" [hidden]="!isWizardShown">
-	<light-wizard #wizard [showPageIndexInNav]="false" [showStepMarkers]="true" (wizardOnNext)="onWizardNext()" (wizardOnFinish)="onWizardFinish()">
+	<light-wizard #wizard 
+		[showPageIndexInNav]="false"
+		[showStepMarkers]="true"
+		[hideSideNav]="!sideNavEnabled"
+		[showStepperMarkersInFooter]="!sideNavEnabled"
+		(wizardOnNext)="onWizardNext()"
+		(wizardOnFinish)="onWizardFinish()">
 		<span light-wizard-title>Light Wizard</span>
 		<div light-wizard-loader>
 			<div class="spinner">

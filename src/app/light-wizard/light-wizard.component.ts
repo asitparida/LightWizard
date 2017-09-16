@@ -12,6 +12,8 @@ export class LightWizardComponent implements AfterViewInit {
 	@ContentChildren(LightWizardPageComponent) pages: QueryList<LightWizardPageComponent> = null;
 	@Input() showPageIndexInNav: Boolean = false;
 	@Input() showStepMarkers: Boolean = false;
+	@Input() hideSideNav: Boolean = false;
+	@Input() showStepperMarkersInFooter: Boolean = false;
 	@Output() wizardOnNext?: EventEmitter<any> = new EventEmitter<any>();
 	@Output() wizardOnFinish?: EventEmitter<any>= new EventEmitter<any>();
 	activePageIndex: number = null;

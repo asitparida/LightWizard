@@ -11,13 +11,16 @@
     color: #0073c6;
     margin: 10vh auto;
     cursor: pointer;
+    &.marginFix {
+      margin-bottom: 0;
+    }
 }
 
 .light-wizard-holder {
     width: 80vw;
-    height: 80vh;
+    height: 75vh;
     display: block;
-    margin: 10vh auto 0 auto; 
+    margin: 5vh auto 0 auto; 
     border: 1px solid #d0d0d0;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
 }
