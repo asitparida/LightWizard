@@ -1,7 +1,10 @@
 <div class="light-wizard-container">
 	<div class="light-wizard-nav-container">
+		<div class="light-wizard-title">
+			<span><ng-content select="[light-wizard-title]"></ng-content></span>
+		</div>
 		<ul>
-			<li *ngFor="let page of pages" [innerHTML]="page.getTitle()"></li>
+			<li [class.active]="i === activePageindex" *ngFor="let page of pages; let i = index" [innerHTML]="page.getTitle()" (click)="activatePage(i)"></li>
 		</ul>
 	</div>
 	<div class="light-wizard-page-container">

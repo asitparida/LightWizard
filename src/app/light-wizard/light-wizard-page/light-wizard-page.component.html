@@ -5,5 +5,9 @@
 	<div class="light-wizard-page-body-container">
 		<ng-content></ng-content>
 	</div>
-	<div class="light-wizard-page-footer-container"></div>
+	<div class="light-wizard-page-footer-container">
+		<button class="btn btn-primary" [hidden]="!showPreviousBtn" (click)="goWizardPreviousPage()">Previous</button>
+		<button class="btn btn-primary" [hidden]="!showNextBtn" (click)="goWizardNextPage()">Next</button>
+		<button class="btn btn-primary" [hidden]="!showFinishBtn" >Finish</button>
+	</div>
 </div>

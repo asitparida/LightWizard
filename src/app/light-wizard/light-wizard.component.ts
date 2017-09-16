@@ -6,10 +6,11 @@ import { LightWizardPageComponent } from './light-wizard-page/light-wizard-page.
 	selector: 'light-wizard',
 	templateUrl: './light-wizard.component.html',
 	styleUrls: ['./light-wizard.component.scss'],
-	providers: [LightWizardService]
+	providers: [ LightWizardService ]
 })
 export class LightWizardComponent implements AfterViewInit {
 	@ContentChildren(LightWizardPageComponent) pages: QueryList<LightWizardPageComponent> = null;
+	activePageindex: number = null;
 	constructor(
 		private wizardService: LightWizardService
 	) { }
@@ -17,9 +18,16 @@ export class LightWizardComponent implements AfterViewInit {
 		this.pages.changes.subscribe((pages) => {
 			this.wizardService.loadPages(pages);
 		});
+		this.wizardService.activePageIndexObservable.subscribe((i: number) => {
+			this.activePageindex = i;
+			console.log(i);
+		})
 		setTimeout(() => {
-			this.wizardService.pagesCollection = this.pages;
+			this.wizardService.loadPages(this.pages);
 			this.wizardService.init();
 		});
+	}
+	activatePage(i: number) {
+		this.wizardService.activatePage(i);
 	}
 }

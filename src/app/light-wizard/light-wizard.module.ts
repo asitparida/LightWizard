@@ -6,6 +6,8 @@ import { HttpModule } from '@angular/http';
 import { LightWizardComponent } from './light-wizard.component';
 import { LightWizardPageComponent } from './light-wizard-page/light-wizard-page.component';
 import { LightWizardPageTitleComponent } from './light-wizard-page/light-wizard-page-title/light-wizard-page-title.component';
+import { LightWizardService } from './light-wizard.service';
+
 @NgModule({
 	declarations: [
 		LightWizardComponent,
@@ -17,7 +19,9 @@ import { LightWizardPageTitleComponent } from './light-wizard-page/light-wizard-
 		FormsModule,
 		HttpModule
 	],
-	providers: [],
+	providers: [
+		LightWizardService
+	],
 	exports: [
 		LightWizardComponent,
 		LightWizardPageComponent,
