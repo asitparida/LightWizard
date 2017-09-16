@@ -1,0 +1,10 @@
+<div class="light-wizard-container">
+	<div class="light-wizard-nav-container">
+		<ul>
+			<li *ngFor="let page of pages" [innerHTML]="page.getTitle()"></li>
+		</ul>
+	</div>
+	<div class="light-wizard-page-container">
+		<ng-content></ng-content>
+	</div>
+</div>

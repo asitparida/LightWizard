@@ -1,0 +1,27 @@
+.light-wizard-container {
+  width: 100%;
+  height: 100%;
+  .light-wizard-nav-container {
+    float: left;
+    width: 250px;
+    height: 100%;
+    background-color: #fafafa;
+    ul {
+      width:100%;
+      list-style: none;
+      padding: 0;
+      li {
+        padding: 15px 30px;
+        box-sizing: border-box;
+        &.active {
+          background-color: #fff;
+        }
+      }
+    }
+  }
+  .light-wizard-page-container {
+    float: right;
+    width: calc(100% - 250px);
+    height: 100%;
+  }
+}
