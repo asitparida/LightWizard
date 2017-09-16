@@ -3,8 +3,8 @@
 		<div class="light-wizard-title">
 			<span><ng-content select="[light-wizard-title]"></ng-content></span>
 		</div>
-		<ul>
-			<li [class.active]="i === activePageindex" *ngFor="let page of pages; let i = index" (click)="activatePage(i)">
+		<ul [class.stepMarkersAdded]="showStepMarkers">
+			<li [class.done]="i < activePageIndex" [attr.index]="i + 1" [class.active]="i === activePageIndex" *ngFor="let page of pages; let i = index" (click)="activatePage(i)">
 				<span [hidden]="!showPageIndexInNav"><strong>{{i + 1}} : </strong></span><span [innerHTML]="page.getTitle()"></span>
 			</li>
 		</ul>

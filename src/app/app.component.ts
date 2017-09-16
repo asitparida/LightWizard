@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { LightWizardComponent } from './light-wizard/light-wizard.component';
 
 @Component({
@@ -6,7 +6,7 @@ import { LightWizardComponent } from './light-wizard/light-wizard.component';
 	templateUrl: './app.component.html',
 	styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
 	isWizardShown: Boolean = false;
 	title = 'app works!';
 	@ViewChild('wizard') wizard: LightWizardComponent;
@@ -28,5 +28,11 @@ export class AppComponent {
 		setTimeout(() => {
 			this.wizard.reset();
 		});
+	}
+	ngAfterViewInit () {
+		// setTimeout(() => {
+		// 	this.isWizardShown = true;
+		// 	this.wizard.open();
+		// });
 	}
 }

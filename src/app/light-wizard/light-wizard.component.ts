@@ -11,9 +11,10 @@ import { LightWizardPageComponent } from './light-wizard-page/light-wizard-page.
 export class LightWizardComponent implements AfterViewInit {
 	@ContentChildren(LightWizardPageComponent) pages: QueryList<LightWizardPageComponent> = null;
 	@Input() showPageIndexInNav: Boolean = false;
+	@Input() showStepMarkers: Boolean = false;
 	@Output() wizardOnNext?: EventEmitter<any> = new EventEmitter<any>();
 	@Output() wizardOnFinish?: EventEmitter<any>= new EventEmitter<any>();
-	activePageindex: number = null;
+	activePageIndex: number = null;
 	showLoader: Boolean = false;
 	showWizard: Boolean = false;
 	constructor(
@@ -24,7 +25,7 @@ export class LightWizardComponent implements AfterViewInit {
 			this.wizardService.loadPages(pages);
 		});
 		this.wizardService.activePageIndexObservable.subscribe((i: number) => {
-			this.activePageindex = i;
+			this.activePageIndex = i;
 			this.wizardOnNext.emit();
 		});
 		this.wizardService.isFinishedObservable.subscribe(() => {
