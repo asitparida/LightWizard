@@ -1,21 +1,40 @@
-<light-wizard class="light-wizard-holder">
-	<span light-wizard-title>Light Wizard</span>
-	<light-wizard-page>
-		<light-wizard-page-title>Step 1</light-wizard-page-title>
-		<h1>
-			{{title}} 1
-		</h1>
-	</light-wizard-page>
-	<light-wizard-page>
-		<light-wizard-page-title>Step 2</light-wizard-page-title>
-		<h1>
-			{{title}} 2
-		</h1>
-	</light-wizard-page>
-	<light-wizard-page>
-		<light-wizard-page-title>Step 3</light-wizard-page-title>
-		<h1>
-			{{title}} 3
-		</h1>
-	</light-wizard-page>
-</light-wizard>
+<button class="btn btn-primary" [hidden]="isWizardShown" (click)="openWizard()">Open Inline Wizard</button>
+<div class="light-wizard-holder" [hidden]="!isWizardShown">
+	<light-wizard #wizard [showPageIndexInNav]="true" (wizardOnNext)="onWizardNext()" (wizardOnFinish)="onWizardFinish()">
+		<span light-wizard-title>Light Wizard</span>
+		<div light-wizard-loader>
+			<div class="spinner">
+				<div class="dot1"></div>
+				<div class="dot2"></div>
+			</div>
+		</div>
+		<light-wizard-page>
+			<light-wizard-page-title>Liquor Bottles</light-wizard-page-title>
+			<div class="content">
+				<img src="../assets/015dribbble.png" />
+			</div>
+			<div class="credits">
+				<a href="https://dribbble.com/shots/3774496-DAY015-Liquor-Bottles" target="_blank">DAY015 @ https://dribbble.com/ahappyphase</a>
+
+			</div>
+		</light-wizard-page>
+		<light-wizard-page>
+			<light-wizard-page-title>Life</light-wizard-page-title>
+			<div class="content">
+				<img src="../assets/023dribbble.png" />
+			</div>
+			<div class="credits">
+				<a href="https://dribbble.com/shots/3785920-DAY023-Life" target="_blank">DAY023 @ https://dribbble.com/ahappyphase</a>
+			</div>
+		</light-wizard-page>
+		<light-wizard-page>
+			<light-wizard-page-title>#365daysofsomething</light-wizard-page-title>
+			<div class="content">
+				<img src="../assets/026dribbble.png" />
+			</div>
+			<div class="credits">
+				<a href="https://dribbble.com/shots/3785924-DAY026-365daysofsomething-Branding" target="_blank">DAY026 @ https://dribbble.com/ahappyphase</a>
+			</div>
+		</light-wizard-page>
+	</light-wizard>
+</div>

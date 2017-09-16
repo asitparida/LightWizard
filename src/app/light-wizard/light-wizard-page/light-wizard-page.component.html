@@ -8,6 +8,6 @@
 	<div class="light-wizard-page-footer-container">
 		<button class="btn btn-primary" [hidden]="!showPreviousBtn" (click)="goWizardPreviousPage()">Previous</button>
 		<button class="btn btn-primary" [hidden]="!showNextBtn" (click)="goWizardNextPage()">Next</button>
-		<button class="btn btn-primary" [hidden]="!showFinishBtn" >Finish</button>
+		<button class="btn btn-success" [hidden]="!showFinishBtn" (click)="goWizardFinish()">Finish</button>
 	</div>
 </div>

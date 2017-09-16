@@ -13,7 +13,7 @@
         width:100%;
         height: calc(100% - 120px);
         float: left;
-        padding: 15px 30px;
+        padding: 0;
         box-sizing: border-box;
     }
     .light-wizard-page-footer-container {
@@ -25,9 +25,28 @@
         display: flex;
         align-items: center;
         justify-content: flex-end;
-        padding: 0 30px;
+        padding: 0 15px;
         button {
             margin-left: 15px;
+            height: 36px;
+            line-height: 34px;
+            min-width:100px;
+            background: transparent;
+            border: 1px solid transparent;
+            box-sizing: border-box;
+            padding: 0;
+            font-size: small;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 2px;
+            &.btn-primary {
+                border-color: #0073c6;
+                color:#0073c6;
+            }
+            &.btn-success {
+                border-color: #27ae60;
+                color:#27ae60;
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ContentChildren, QueryList } from '@angular/core';
+import { Component, AfterViewInit, ContentChildren, QueryList, Input, Output, ViewEncapsulation, EventEmitter } from '@angular/core';
 import { LightWizardService } from './light-wizard.service';
 import { LightWizardPageComponent } from './light-wizard-page/light-wizard-page.component';
 
@@ -10,7 +10,12 @@ import { LightWizardPageComponent } from './light-wizard-page/light-wizard-page.
 })
 export class LightWizardComponent implements AfterViewInit {
 	@ContentChildren(LightWizardPageComponent) pages: QueryList<LightWizardPageComponent> = null;
+	@Input() showPageIndexInNav: Boolean = false;
+	@Output() wizardOnNext?: EventEmitter<any> = new EventEmitter<any>();
+	@Output() wizardOnFinish?: EventEmitter<any>= new EventEmitter<any>();
 	activePageindex: number = null;
+	showLoader: Boolean = false;
+	showWizard: Boolean = false;
 	constructor(
 		private wizardService: LightWizardService
 	) { }
@@ -20,8 +25,11 @@ export class LightWizardComponent implements AfterViewInit {
 		});
 		this.wizardService.activePageIndexObservable.subscribe((i: number) => {
 			this.activePageindex = i;
-			console.log(i);
-		})
+			this.wizardOnNext.emit();
+		});
+		this.wizardService.isFinishedObservable.subscribe(() => {
+			this.wizardOnFinish.emit();
+		});
 		setTimeout(() => {
 			this.wizardService.loadPages(this.pages);
 			this.wizardService.init();
@@ -29,5 +37,15 @@ export class LightWizardComponent implements AfterViewInit {
 	}
 	activatePage(i: number) {
 		this.wizardService.activatePage(i);
+	}
+	reset() {
+		console.log('reset');
+		this.wizardService.resetWizard();
+	}
+	open() {
+		this.showWizard = true;
+	}
+	close() {
+		this.showWizard = false;
 	}
 }

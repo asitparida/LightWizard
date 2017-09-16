@@ -1,17 +1,38 @@
 .light-wizard-container {
   width: 100%;
   height: 100%;
+  position: relative;
+  font-family: 'Roboto', sans-serif;
+  .light-wizard-loader-container {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top:0;
+	left:0;
+	.light-wizard-loader-overlay {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		float: right;
+		width: calc(100% - 250px);
+		height: 100%;
+		background-color: rgba(255,255,255,1);
+	}
+  }
   .light-wizard-nav-container {
     float: left;
 	width: 250px;
 	height: 100%;
 	background-color: #f6f6f6;
 	.light-wizard-title {
-		font-size: large;
+		font-size: small;
 		font-weight: bold;
-		padding: 14px 30px;
+		padding: 0 30px;
 		box-sizing: border-box;
 		min-height: 60px;
+		line-height: 60px;
+		letter-spacing: 1px;
+		text-transform: uppercase;
 		span {
 			line-height: normal;
 		}
@@ -22,9 +43,10 @@
       padding: 0;
       margin: 0;
       li {
+		font-size: small;
         padding: 0 30px;
         box-sizing: border-box;
-        line-height: 60px;
+        line-height: 48px;
 		cursor: pointer;
 		transition: background 0.2s linear 0s;
 		opacity: 0.60;

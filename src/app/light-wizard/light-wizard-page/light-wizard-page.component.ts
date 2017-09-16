@@ -38,4 +38,7 @@ export class LightWizardPageComponent {
 	goWizardNextPage() {
 		this.wizardService.activateNextPage();
 	}
+	goWizardFinish() {
+		this.wizardService.finishWizard();
+	}
 }

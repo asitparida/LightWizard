@@ -7,6 +7,8 @@ export class LightWizardService {
 	private pagesCollection: QueryList<LightWizardPageComponent>;
 	private activePageIndexSubject: Subject<number> = new Subject<number>();
 	private activePageIndex: number;
+	private isFinished: Subject<Boolean> = new Subject<Boolean>();
+	isFinishedObservable = this.isFinished.asObservable();
 	activePageIndexObservable = this.activePageIndexSubject.asObservable();
 	activePageId: string;
 	constructor(
@@ -56,6 +58,12 @@ export class LightWizardService {
 		if (this.activePageIndex < this.pagesCollection.length - 1 ) {
 			this.activatePage(this.activePageIndex + 1);
 		}
+	}
+	finishWizard() {
+		this.isFinished.next(true);
+	}
+	resetWizard() {
+		this.init();
 	}
 	getRandomInt() {
 		return Math.floor(Math.random() * 1000000);
