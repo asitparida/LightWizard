@@ -16,6 +16,7 @@ export class LightWizardPageComponent {
 	showPreviousBtn: Boolean = false;
 	showNextBtn: Boolean = false;
 	showFinishBtn: Boolean = false;
+	showCancelBtn: Boolean = false;
 	private id: string = null;
 	constructor(
 		private sanitizer: DomSanitizer,
@@ -44,5 +45,8 @@ export class LightWizardPageComponent {
 	}
 	goWizardFinish() {
 		this.wizardService.finishWizard();
+	}
+	goWizardCancel() {
+		this.wizardService.dismissWizard();
 	}
 }

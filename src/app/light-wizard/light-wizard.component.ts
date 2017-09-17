@@ -15,7 +15,8 @@ export class LightWizardComponent implements AfterViewInit {
 	@Input() hideSideNav: Boolean = false;
 	@Input() showStepperMarkersInFooter: Boolean = false;
 	@Output() wizardOnNext?: EventEmitter<any> = new EventEmitter<any>();
-	@Output() wizardOnFinish?: EventEmitter<any>= new EventEmitter<any>();
+	@Output() wizardOnFinish?: EventEmitter<any> = new EventEmitter<any>();
+	@Output() wizardOnCancel?: EventEmitter<any> = new EventEmitter<any>();
 	activePageIndex: number = null;
 	showLoader: Boolean = false;
 	showWizard: Boolean = false;
@@ -32,6 +33,10 @@ export class LightWizardComponent implements AfterViewInit {
 		});
 		this.wizardService.isFinishedObservable.subscribe(() => {
 			this.wizardOnFinish.emit();
+		});
+		this.wizardService.isCancelledObservable.subscribe(() => {
+			this.close();
+			this.wizardOnCancel.emit();
 		});
 		setTimeout(() => {
 			this.wizardService.loadPages(this.pages);

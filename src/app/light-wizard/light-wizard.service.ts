@@ -8,8 +8,10 @@ export class LightWizardService {
 	private activePageIndexSubject: Subject<number> = new Subject<number>();
 	private activePageIndex: number;
 	private isFinished: Subject<Boolean> = new Subject<Boolean>();
+	private isCancelled: Subject<Boolean> = new Subject<Boolean>();
 	isFinishedObservable = this.isFinished.asObservable();
-	activePageIndexObservable = this.activePageIndexSubject.asObservable();
+	isCancelledObservable = this.isCancelled.asObservable();
+ 	activePageIndexObservable = this.activePageIndexSubject.asObservable();
 	activePageId: string;
 	constructor(
 		private cdr: ChangeDetectorRef
@@ -34,6 +36,7 @@ export class LightWizardService {
 			if (!page.getId()) {
 				page.setId('page_' + this.getRandomInt());
 			}
+			page.showCancelBtn = true;
 			page.showPreviousBtn = index !== 0;
 			page.showNextBtn = index !== this.pagesCollection.length - 1;
 			page.showFinishBtn = index === this.pagesCollection.length - 1;
@@ -64,6 +67,9 @@ export class LightWizardService {
 	}
 	resetWizard() {
 		this.init();
+	}
+	dismissWizard() {
+		this.isCancelled.next(true);
 	}
 	getRandomInt() {
 		return Math.floor(Math.random() * 1000000);

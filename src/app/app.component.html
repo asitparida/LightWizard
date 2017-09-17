@@ -6,6 +6,7 @@
 		[showStepMarkers]="true"
 		[hideSideNav]="!sideNavEnabled"
 		[showStepperMarkersInFooter]="!sideNavEnabled"
+		(wizardOnCancel)="onWizardCancel()"
 		(wizardOnNext)="onWizardNext()"
 		(wizardOnFinish)="onWizardFinish()">
 		<span light-wizard-title>Light Wizard</span>

@@ -29,10 +29,15 @@ export class AppComponent implements AfterViewInit {
 			this.wizard.reset();
 		});
 	}
+	onWizardCancel() {
+		this.isWizardShown = false;
+		this.wizard.close();
+		this.wizard.reset();
+	}
 	ngAfterViewInit () {
 		// setTimeout(() => {
 		// 	this.isWizardShown = true;
-		// 	this.sideNavEnabled = true;
+		// 	this.sideNavEnabled = false;
 		// 	this.wizard.open();
 		// });
 	}
