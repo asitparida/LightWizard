@@ -5,14 +5,16 @@ import { HttpModule } from '@angular/http';
 
 import { LightWizardComponent } from './light-wizard.component';
 import { LightWizardPageComponent } from './light-wizard-page/light-wizard-page.component';
-import { LightWizardPageTitleComponent } from './light-wizard-page/light-wizard-page-title/light-wizard-page-title.component';
+import { LightWizardPageTitleComponent } from './components/light-wizard-page-title.component';
+import { LightWizardPageNavTitleComponent } from './components/light-wizard-page-nav-title.component';
 import { LightWizardService } from './light-wizard.service';
 
 @NgModule({
 	declarations: [
 		LightWizardComponent,
 		LightWizardPageComponent,
-		LightWizardPageTitleComponent
+		LightWizardPageTitleComponent,
+		LightWizardPageNavTitleComponent
 	],
 	imports: [
 		BrowserModule,
@@ -25,7 +27,8 @@ import { LightWizardService } from './light-wizard.service';
 	exports: [
 		LightWizardComponent,
 		LightWizardPageComponent,
-		LightWizardPageTitleComponent
+		LightWizardPageTitleComponent,
+		LightWizardPageNavTitleComponent
 	]
 })
 export class LightWizardModule { }

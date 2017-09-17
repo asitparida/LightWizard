@@ -1,5 +1,6 @@
 import { Component, ContentChild, Query, ElementRef } from '@angular/core';
-import { LightWizardPageTitleComponent } from './light-wizard-page-title/light-wizard-page-title.component';
+import { LightWizardPageTitleComponent } from '../components/light-wizard-page-title.component';
+import { LightWizardPageNavTitleComponent } from '../components/light-wizard-page-nav-title.component';
 import { DomSanitizer } from '@angular/platform-browser';
 import { LightWizardService } from '../light-wizard.service';
 
@@ -10,6 +11,7 @@ import { LightWizardService } from '../light-wizard.service';
 })
 export class LightWizardPageComponent {
 	@ContentChild(LightWizardPageTitleComponent, { read: ElementRef }) title: ElementRef;
+	@ContentChild(LightWizardPageNavTitleComponent, { read: ElementRef }) navTitle: ElementRef;
 	showPage: Boolean = false;
 	showPreviousBtn: Boolean = false;
 	showNextBtn: Boolean = false;
@@ -21,7 +23,9 @@ export class LightWizardPageComponent {
 	) { }
 	getTitle() {
 		let result = '';
-		if (this.title.nativeElement) {
+		if (this.navTitle && this.navTitle.nativeElement) {
+			result = (this.navTitle.nativeElement as Element).innerHTML;
+		} else if (this.title && this.title.nativeElement) {
 			result = (this.title.nativeElement as Element).innerHTML;
 		}
 		return this.sanitizer.bypassSecurityTrustHtml(result);
