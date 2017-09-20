@@ -16,7 +16,8 @@ export class LightWizardComponent implements AfterViewInit {
 	@Input() showBottomNav: Boolean = false;
 	@Input() showTopNav: Boolean = false;
 	@Input() showNavTitles: Boolean = true;
-	@Output() wizardOnNext?: EventEmitter<any> = new EventEmitter<any>();
+	@Output() wizardOnNext?: EventEmitter<number> = new EventEmitter<number>();
+	@Output() wizardOnPrevious?:EventEmitter<number> = new EventEmitter<number>();
 	@Output() wizardOnFinish?: EventEmitter<any> = new EventEmitter<any>();
 	@Output() wizardOnCancel?: EventEmitter<any> = new EventEmitter<any>();
 	activePageIndex: number = null;
@@ -31,14 +32,19 @@ export class LightWizardComponent implements AfterViewInit {
 		});
 		this.wizardService.activePageIndexObservable.subscribe((i: number) => {
 			this.activePageIndex = i;
-			this.wizardOnNext.emit();
+		});
+		this.wizardService.nextPageInvokedObservable.subscribe((i : number) => {
+			this.wizardOnNext.emit(i);
+		});
+		this.wizardService.previousPageInvokedObservable.subscribe((i : number) => {
+			this.wizardOnPrevious.emit(i);
+		});
+		this.wizardService.cancelWizardInvokedObservable.subscribe(() => {
+			this.close();
+			this.wizardOnCancel.emit();
 		});
 		this.wizardService.isFinishedObservable.subscribe(() => {
 			this.wizardOnFinish.emit();
-		});
-		this.wizardService.isCancelledObservable.subscribe(() => {
-			this.close();
-			this.wizardOnCancel.emit();
 		});
 		setTimeout(() => {
 			this.wizardService.loadPages(this.pages);

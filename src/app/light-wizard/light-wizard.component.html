@@ -1,4 +1,4 @@
-<template #lightWizardNav>
+<ng-template #lightWizardNav>
 	<ul class="light-wizard-nav" [class.stepMarkersAdded]="showStepMarkers" [class.navTitlesHidden]="!showNavTitles">
 		<li [class.done]="i < activePageIndex" [attr.index]="i + 1" [class.active]="i === activePageIndex" *ngFor="let page of pages; let i = index"
 		 (click)="activatePage(i)">
@@ -6,7 +6,7 @@
 			 [innerHTML]="page.getTitle()"></span>
 		</li>
 	</ul>
-</template>
+</ng-template>
 <div class="light-wizard-container" [hidden]="!showWizard">
 	<div class="light-wizard-nav-container" [hidden]="hideSideNav">
 		<div class="light-wizard-title">

@@ -9,9 +9,9 @@
 		<ng-content></ng-content>
 	</div>
 	<div class="light-wizard-page-footer-container">
-		<button class="btn btn-primary" [hidden]="!showCancelBtn" (click)="goWizardCancel()">Cancel</button>
-		<button class="btn btn-primary" [hidden]="!showPreviousBtn" (click)="goWizardPreviousPage()">Previous</button>
-		<button class="btn btn-primary" [hidden]="!showNextBtn" (click)="goWizardNextPage()">Next</button>
-		<button class="btn btn-success" [hidden]="!showFinishBtn" (click)="goWizardFinish()">Finish</button>
+		<button class="btn btn-primary" [disabled]="disableCancelButtonOverride" [hidden]="!showCancelBtn || !showCancelButtonOverride" (click)="goWizardCancel()">Cancel</button>
+		<button class="btn btn-primary" [disabled]="disablePreviousButtonOverride" [hidden]="!showPreviousBtn || !showPreviousButtonOverride" (click)="goWizardPreviousPage()">Previous</button>
+		<button class="btn btn-primary" [disabled]="disableNextButtonOverride" [hidden]="!showNextBtn || !showNextButtonOverride" (click)="goWizardNextPage()">Next</button>
+		<button class="btn btn-success" [disabled]="disableFinishButtonOverride" [hidden]="!showFinishBtn || !showFinishButtonOverride" (click)="goWizardFinish()">Finish</button>
 	</div>
 </div>

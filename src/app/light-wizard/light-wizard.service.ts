@@ -9,10 +9,17 @@ export class LightWizardService {
 	private activePageIndex: number;
 	private isFinished: Subject<Boolean> = new Subject<Boolean>();
 	private isCancelled: Subject<Boolean> = new Subject<Boolean>();
+	private nextPageInvoke: Subject<number> = new Subject<number>();
+	private previousPageInvoke: Subject<number> = new Subject<number>();
+	private cancelWizardInvoke: Subject<{}> = new Subject<{}>();
+	private activePageId: Subject<string> = new Subject<string>();
+	activePageIdObservable = this.activePageId.asObservable();
 	isFinishedObservable = this.isFinished.asObservable();
 	isCancelledObservable = this.isCancelled.asObservable();
- 	activePageIndexObservable = this.activePageIndexSubject.asObservable();
-	activePageId: string;
+	nextPageInvokedObservable = this.nextPageInvoke.asObservable();
+	previousPageInvokedObservable = this.previousPageInvoke.asObservable();
+	cancelWizardInvokedObservable = this.cancelWizardInvoke.asObservable();
+	activePageIndexObservable = this.activePageIndexSubject.asObservable();
 	constructor(
 		private cdr: ChangeDetectorRef
 	) { }
@@ -25,7 +32,7 @@ export class LightWizardService {
 			page.showPage = index === 0;
 			if (index === 0) {
 				this.activePageIndex = 0;
-				this.activePageId = page.getId();
+				this.activePageId.next(page.getId());
 			}
 		});
 		this.activePageIndexSubject.next(this.activePageIndex);
@@ -42,24 +49,33 @@ export class LightWizardService {
 			page.showFinishBtn = index === this.pagesCollection.length - 1;
 		});
 	}
-	activatePage(pageIndex: number) {
+	activatePage(pageIndex: number): number {
+		let result = null;
 		this.pagesCollection.forEach((page: LightWizardPageComponent, index: number) => {
 			page.showPage = index === pageIndex;
 			if (index === pageIndex) {
 				this.activePageIndex = index;
-				this.activePageId = page.getId();
+				this.activePageId.next(page.getId());
+				result = this.activePageIndex;
 			}
 		});
 		this.activePageIndexSubject.next(this.activePageIndex);
+		return result;
 	}
 	activatePreviousPage() {
 		if (this.activePageIndex > 0) {
-			this.activatePage(this.activePageIndex - 1);
+			const result = this.activatePage(this.activePageIndex - 1);
+			if (result) {
+				this.previousPageInvoke.next(result);
+			}
 		}
 	}
 	activateNextPage() {
 		if (this.activePageIndex < this.pagesCollection.length - 1 ) {
-			this.activatePage(this.activePageIndex + 1);
+			const result = this.activatePage(this.activePageIndex + 1);
+			if (result) {
+				this.nextPageInvoke.next(result);
+			}
 		}
 	}
 	finishWizard() {
@@ -70,6 +86,7 @@ export class LightWizardService {
 	}
 	dismissWizard() {
 		this.isCancelled.next(true);
+		this.cancelWizardInvoke.next({});
 	}
 	getRandomInt() {
 		return Math.floor(Math.random() * 1000000);

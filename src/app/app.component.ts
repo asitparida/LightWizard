@@ -12,13 +12,15 @@ export class AppComponent implements AfterViewInit {
 	showNavTitles: Boolean = true;
 	showTopNav: Boolean = false;
 	showBottomNav: Boolean = false;
+	showCancelButtons: Boolean = true;
 	private index: number = 0;
 	@ViewChild('wizard') wizard: LightWizardComponent;
 	openWizard() {
 		this.wizard.open();
 		this.isWizardShown = true;
 	}
-	onWizardNext() {
+	onWizardNext(i) {
+		console.log('onWizardNext : index ' + i);
 		setTimeout(() => {
 			this.wizard.showLoader = true;
 			setTimeout(() => {
@@ -68,5 +70,8 @@ export class AppComponent implements AfterViewInit {
 			}
 			default: break;
 		}
+	}
+	onLifePageLoaded() {
+		console.log('onLifePageLoaded');
 	}
 }

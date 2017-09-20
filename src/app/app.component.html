@@ -2,6 +2,7 @@
 		<button class="btn btn-primary" [hidden]="isWizardShown" (click)="openWizard()">Open Inline Wizard</button>
 		<button class="btn btn-primary marginFix" [hidden]="!isWizardShown" (click)="toggleNav()">Toggle Wizard Nav</button>
 		<button class="btn btn-primary marginFix" [hidden]="!isWizardShown" (click)="showNavTitles = !showNavTitles">Toggle Nav Titles</button>
+		<button class="btn btn-primary marginFix" [hidden]="!isWizardShown" (click)="showCancelButtons = !showCancelButtons">Toggle Cancel Buttons</button>
 </div>
 <div class="light-wizard-holder" [hidden]="!isWizardShown">
 	<light-wizard #wizard 
@@ -12,7 +13,7 @@
 		[showTopNav]="showTopNav"
 		[showNavTitles]="showNavTitles"
 		(wizardOnCancel)="onWizardCancel()"
-		(wizardOnNext)="onWizardNext()"
+		(wizardOnNext)="onWizardNext($event)"
 		(wizardOnFinish)="onWizardFinish()">
 		<span light-wizard-title>Light Wizard</span>
 		<div light-wizard-loader>
@@ -21,7 +22,7 @@
 				<div class="dot2"></div>
 			</div>
 		</div>
-		<light-wizard-page>
+		<light-wizard-page [showCancelButtonOverride]="showCancelButtons">
 			<light-wizard-page-nav-title>Liquor #1</light-wizard-page-nav-title>
 			<light-wizard-page-title>Liquor Bottles</light-wizard-page-title>
 			<div class="content">
@@ -31,7 +32,7 @@
 				<a href="https://dribbble.com/shots/3774496-DAY015-Liquor-Bottles" target="_blank">DAY015 @ https://dribbble.com/ahappyphase</a>
 			</div>
 		</light-wizard-page>
-		<light-wizard-page>
+		<light-wizard-page [showCancelButtonOverride]="showCancelButtons" (onWizardPageLoad)="onLifePageLoaded()">
 			<light-wizard-page-title>Life</light-wizard-page-title>
 			<div class="content">
 				<img src="../assets/023dribbble.png" />
@@ -40,7 +41,7 @@
 				<a href="https://dribbble.com/shots/3785920-DAY023-Life" target="_blank">DAY023 @ https://dribbble.com/ahappyphase</a>
 			</div>
 		</light-wizard-page>
-		<light-wizard-page>
+		<light-wizard-page [showCancelButtonOverride]="showCancelButtons" [disablePreviousButtonOverride]="true">
 			<light-wizard-page-title>#365daysofsomething</light-wizard-page-title>
 			<div class="content">
 				<img src="../assets/026dribbble.png" />

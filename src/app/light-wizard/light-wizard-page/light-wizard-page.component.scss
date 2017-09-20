@@ -47,6 +47,12 @@
                 border-color: #27ae60;
                 color:#27ae60;
             }
+            &[disabled] {
+                opacity: 0.5;
+                border-color: #909090;
+                color: #909090;
+                cursor: not-allowed;
+            }
         }
     }
 }
