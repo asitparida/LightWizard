@@ -1,11 +1,16 @@
-<button class="btn btn-primary" [hidden]="isWizardShown" (click)="openWizard()">Open Inline Wizard</button>
-<button class="btn btn-primary marginFix" [hidden]="!isWizardShown" (click)="sideNavEnabled = !sideNavEnabled">Toggle Wizard Nav</button>
+<div class="sample-actions">
+		<button class="btn btn-primary" [hidden]="isWizardShown" (click)="openWizard()">Open Inline Wizard</button>
+		<button class="btn btn-primary marginFix" [hidden]="!isWizardShown" (click)="toggleNav()">Toggle Wizard Nav</button>
+		<button class="btn btn-primary marginFix" [hidden]="!isWizardShown" (click)="showNavTitles = !showNavTitles">Toggle Nav Titles</button>
+</div>
 <div class="light-wizard-holder" [hidden]="!isWizardShown">
 	<light-wizard #wizard 
 		[showPageIndexInNav]="false"
 		[showStepMarkers]="true"
 		[hideSideNav]="!sideNavEnabled"
-		[showStepperMarkersInFooter]="!sideNavEnabled"
+		[showBottomNav]="showBottomNav"
+		[showTopNav]="showTopNav"
+		[showNavTitles]="showNavTitles"
 		(wizardOnCancel)="onWizardCancel()"
 		(wizardOnNext)="onWizardNext()"
 		(wizardOnFinish)="onWizardFinish()">

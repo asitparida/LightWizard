@@ -13,7 +13,9 @@ export class LightWizardComponent implements AfterViewInit {
 	@Input() showPageIndexInNav: Boolean = false;
 	@Input() showStepMarkers: Boolean = false;
 	@Input() hideSideNav: Boolean = false;
-	@Input() showStepperMarkersInFooter: Boolean = false;
+	@Input() showBottomNav: Boolean = false;
+	@Input() showTopNav: Boolean = false;
+	@Input() showNavTitles: Boolean = true;
 	@Output() wizardOnNext?: EventEmitter<any> = new EventEmitter<any>();
 	@Output() wizardOnFinish?: EventEmitter<any> = new EventEmitter<any>();
 	@Output() wizardOnCancel?: EventEmitter<any> = new EventEmitter<any>();

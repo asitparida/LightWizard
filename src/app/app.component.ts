@@ -9,6 +9,10 @@ import { LightWizardComponent } from './light-wizard/light-wizard.component';
 export class AppComponent implements AfterViewInit {
 	isWizardShown: Boolean = false;
 	sideNavEnabled: Boolean = true;
+	showNavTitles: Boolean = true;
+	showTopNav: Boolean = false;
+	showBottomNav: Boolean = false;
+	private index: number = 0;
 	@ViewChild('wizard') wizard: LightWizardComponent;
 	openWizard() {
 		this.wizard.open();
@@ -35,10 +39,34 @@ export class AppComponent implements AfterViewInit {
 		this.wizard.reset();
 	}
 	ngAfterViewInit () {
-		// setTimeout(() => {
-		// 	this.isWizardShown = true;
-		// 	this.sideNavEnabled = false;
-		// 	this.wizard.open();
-		// });
+		setTimeout(() => {
+			this.isWizardShown = true;
+			this.sideNavEnabled = true;
+			this.wizard.open();
+		});
+	}
+	toggleNav() {
+		this.index = this.index + 1;
+		switch (this.index % 3) {
+			case 0: {
+				this.sideNavEnabled = true;
+				this.showBottomNav = false;
+				this.showTopNav = false;
+				break;
+			}
+			case 1: {
+				this.sideNavEnabled = false;
+				this.showBottomNav = true;
+				this.showTopNav = false;
+				break;
+			}
+			case 2: {
+				this.sideNavEnabled = false;
+				this.showBottomNav = false;
+				this.showTopNav = true;
+				break;
+			}
+			default: break;
+		}
 	}
 }

@@ -1,25 +1,35 @@
+<template #lightWizardNav>
+	<ul class="light-wizard-nav" [class.stepMarkersAdded]="showStepMarkers" [class.navTitlesHidden]="!showNavTitles">
+		<li [class.done]="i < activePageIndex" [attr.index]="i + 1" [class.active]="i === activePageIndex" *ngFor="let page of pages; let i = index"
+		 (click)="activatePage(i)">
+			<span [hidden]="!showPageIndexInNav"><strong>{{i + 1}} : </strong></span><span [hidden]="!showNavTitles" class="navTitles"
+			 [innerHTML]="page.getTitle()"></span>
+		</li>
+	</ul>
+</template>
 <div class="light-wizard-container" [hidden]="!showWizard">
 	<div class="light-wizard-nav-container" [hidden]="hideSideNav">
 		<div class="light-wizard-title">
 			<span><ng-content select="[light-wizard-title]"></ng-content></span>
 		</div>
-		<ul [class.stepMarkersAdded]="showStepMarkers">
-			<li [class.done]="i < activePageIndex" [attr.index]="i + 1" [class.active]="i === activePageIndex" *ngFor="let page of pages; let i = index" (click)="activatePage(i)">
-				<span [hidden]="!showPageIndexInNav"><strong>{{i + 1}} : </strong></span><span [innerHTML]="page.getTitle()"></span>
-			</li>
-		</ul>
+		<ng-container *ngTemplateOutlet="lightWizardNav"></ng-container>
 	</div>
 	<div class="light-wizard-page-container">
-		<ng-content></ng-content>
-		<div class="light-wizard-loader-container" [hidden]="!showLoader">
-			<div class="light-wizard-loader-overlay">
-				<ng-content select="[light-wizard-loader]"></ng-content>
+		<div class="light-wizard-content-container">
+			<div class="light-wizard-top-nav" [hidden]="!showTopNav">
+				<ng-container *ngTemplateOutlet="lightWizardNav"></ng-container>
 			</div>
-		</div>
-		<div class="light-wizard-footer-steppers" [hidden]="!showStepperMarkersInFooter">
-			<ul>
-				<li [class.done]="i < activePageIndex" [attr.index]="i + 1" [class.active]="i === activePageIndex" *ngFor="let page of pages; let i = index" (click)="activatePage(i)"></li>
-			</ul>
+			<div class="light-wizard-content-page ">
+				<ng-content></ng-content>
+				<div class="light-wizard-loader-container" [hidden]="!showLoader">
+						<div class="light-wizard-loader-overlay">
+							<ng-content select="[light-wizard-loader]"></ng-content>
+						</div>
+					</div>
+				<div class="light-wizard-bottom-nav" [hidden]="!showBottomNav">
+					<ng-container *ngTemplateOutlet="lightWizardNav"></ng-container>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
